@@ -1,12 +1,12 @@
-# Sveltekit & Github Projet Setup
+# Sveltekit & Github Project Setup
 
-Below are the steps I use to create a Sveltekit project with a Github remote repository.
+Below are the steps I use to create a Sveltekit project with a remote Github repository.
 
-## Create a Blank Remote Github Repository
+## 1 - Create a Blank Remote Github Repository
 
 First, go to Github and create a new repository *without* a README, .gitignore, or license file.  I usually use the same name for both the Github.com remote repository and the Sveltekit project directory.
 
-## Create a Sveltekit Project
+## 2 - Create a Sveltekit Project
 
 ```bash
 # from the parent directory of the new project:
@@ -24,7 +24,7 @@ cd project-directory
 npm install
 ```
 
-## Create a Local Git Repository and Connect it to the Remote Github Repo
+## 3 -Create a Local Git Repository and Connect it to the Remote Github Repo
 
 ```bash
 # initialize the local Git repository
@@ -41,6 +41,8 @@ git push -u origin main
 Open VScode, add the new folder to the Workspace, and ensure the **SOURCE CONTROL REPOSITORY** for the folder is attached to **main**.
 
 I then rename the existing README.md to something else (like README_SVELTE.md), and cretae an new README.md with the new folder's actual info.
+
+Whenever I commit changes to the local repo, I also use VScode to 'push' or 'sync' the changes with the remote repo.
 
 ## Developing
 
