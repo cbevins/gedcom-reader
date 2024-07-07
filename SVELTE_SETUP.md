@@ -44,6 +44,53 @@ I then rename the existing README.md to something else (like README_SVELTE.md), 
 
 Whenever I commit changes to the local repo, I also use VScode to 'push' or 'sync' the changes with the remote repo.
 
+## 4 - Set up **app.html** for Bootstrap, Popper, favicon, etc
+
+First, copy the preferred **favicon.png** (such as **Collin.jpg**) into the **static** folder.
+
+Then, repplace the main **app.html** with:
+
+```html
+<!doctype html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+
+		<!-- Responsiveness meta tag -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- Bootstrap CSS (5.3.2) -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+		<!-- favicon  -->
+		<link rel="icon" href="%sveltekit.assets%/Collin.jpg" />
+
+		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+		
+		<!-- The following is replaced by each +page.svelte's <svelte:head>
+			content, if any, such as:
+			<svelte:head>
+				<title>Bevins-Riley</title>
+				<meta name="description" content="Bevins-Riley genealogy" />
+			</svelte:head> -->
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<!-- Option 1: Bootstrap Bundle with Popper -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+		
+		<!-- Option 2: Separate Popper and Bootstrap JS
+			<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+		-->
+		<div>
+			<div style="display: contents">%sveltekit.body%</div>
+		</div>		
+	</body>
+</html>
+```
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
