@@ -4,7 +4,7 @@ Below are the steps I use to create a Sveltekit project with a remote Github rep
 
 ## 1 - Create a Blank Remote Github Repository
 
-First, go to Github and create a new repository *without* a README, .gitignore, or license file.  I usually use the same name for both the Github.com remote repository and the Sveltekit project directory.
+First, go to Github and create a new repository *without* a README, .gitignore, or license file.  I usually use the same name for both the Github.com remote repository and the Sveltekit project directory.  In this example, the project and repo names are **project-directory**.
 
 ## 2 - Create a Sveltekit Project
 
@@ -33,7 +33,7 @@ git add -A
 git commit -m "Initial commit"
 
 # connect local repo with the remote Gituhub.com repo
-git remote add origin
+git remote add origin https://github.com/cbevins/project-directory
 git branch -M main
 git push -u origin main
 ```
