@@ -1,4 +1,8 @@
-# file-reader
+# file-reader Subpackage
+
+The **file-reader** subpackage contains functions and scripts to:
+- asynchronously read newline-delimited text files from the local file system into a simple Javascript array, and
+- write the Javascript array as a 'export const varName = [...]' statement to a Javascript file back onto the local file system.
 
 ## Function File: **file2JsonArray.js**
 

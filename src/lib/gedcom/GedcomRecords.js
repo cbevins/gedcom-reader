@@ -90,6 +90,11 @@ export class GedcomRecords {
 
     current() { return this._data.current }
 
+    // Returns the date the GEDCOM file was created
+    dateCreated() {
+        return this.findFirstContent('', ['HEAD','DATE'])
+    }
+
     // Finds ALL GedcomRecords matching the *type* and *context* starting at the top level
     // and returns their content strings in an array
     findAllContent(key, context, missing='') {
