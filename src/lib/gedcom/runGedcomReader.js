@@ -13,6 +13,10 @@ await mission()
 const time2 = new Date()
 console.log(`Elapsed : ${(time2-time1).toString().padStart(5)} msec`)
 
+function intFormat(val, width=4) {
+    return val.toLocaleString('en-US').padStart(width)
+}
+
 async function mission() {
     // Read the GEDCOM text file into an array of text lines
     const lines = await file2JsonArray(fileName)
@@ -28,13 +32,13 @@ async function mission() {
     const created = gedcom.dateCreated()
     console.log(`\nRead GEDCOM File '${fileName}' ...`)
     console.log(`    ... created by ${source} on ${created}`)
-    console.log(`    ... contains ${reader.lines().length.toLocaleString('en-US')} lines and generated ${reader.messages().length} messages:`)
+    console.log(`    ... contains ${intFormat(reader.lines().length)} lines and generated ${reader.messages().length} messages:`)
     if (reader.messages().length) console.log(reader.messages())
 
     const top = gedcom.topLevelCounts()
     console.log(`Resulting GedcomRecords data structure has:`)
     console.log(`  ${top.length} Level 0 record types:`)
-    for(const pair of top) console.log(`    ${pair[1]} ${pair[0]}`)
+    for(const pair of top) console.log(`    ${intFormat(pair[1], 8)} ${pair[0]}`)
 
     const contexts = gedcom.contexts()
     console.log(` ${contexts.length} record contexts:`)

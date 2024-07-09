@@ -1,0 +1,209 @@
+0 HEAD
+1 SOUR RootsMagic
+2 NAME RootsMagic
+2 CORP RootsMagic, Inc.
+3 ADDR PO Box 495
+4 CONT Springville, UT 84663
+4 CONT USA
+3 PHON 1-800-ROOTSMAGIC
+3 WWW www.RootsMagic.com
+1 DEST RootsMagic
+1 DATE 29 APR 2024
+1 FILE RootsMagicAncestrySync.ged
+1 GEDC
+2 VERS 5.5.1
+2 FORM LINEAGE-LINKED
+1 CHAR UTF-8
+0 @I1@ INDI
+1 NAME Rosanna /Wells/
+2 GIVN Rosanna
+2 SURN Wells
+1 SEX F
+1 _UID D35619F04F4747F9AF4D3216DE03FD032DBB
+1 _AMTID 292516948915:1030:191428111
+1 CHAN
+2 DATE 21 APR 2024
+1 DEAT Y
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\UnitedStates.jpg
+2 FORM jpg
+2 TITL UnitedStates
+2 _TYPE PHOTO
+2 _SCBK N
+2 _PRIM Y
+1 FAMS @F1@
+0 @I2@ INDI
+1 NAME Fountain /Young/
+2 GIVN Fountain
+2 SURN Young
+1 SEX M
+1 _UID 094B18E5525A44258D5F6F16BBD676DCBAD0
+1 _AMTID 292516949770:1030:191428111
+1 CHAN
+2 DATE 21 APR 2024
+1 DEAT Y
+1 FAMS @F2@
+0 @I3@ INDI
+1 NAME Thomas /Speer/
+2 GIVN Thomas
+2 SURN Speer
+2 NSFX (#320)
+2 SOUR @S1@
+3 _TMPLT
+4 FIELD
+5 NAME Page
+2 SOUR @S2@
+3 PAGE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 NAME Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\004772461_00472.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+2 SOUR @S3@
+3 PAGE The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 NAME The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\4440913_00302.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+1 SEX M
+1 _UID 8D9E212EDBE640D5AA1FE940B0348B7F3029
+1 _AMTID 292516954962:1030:191428111
+1 CHAN
+2 DATE 21 APR 2024
+1 SOUR @S4@
+2 _TMPLT
+3 FIELD
+4 NAME Page
+2 _WEBTAG
+3 NAME Geneanet Community Trees Index
+3 URL https://gw.geneanet.org/waltoney?n=speer&oc=&p=thomas
+1 BIRT
+2 DATE 1734
+2 PLAC Somerset County, Maryland, USA
+1 RESI
+2 DATE 2 AUG 1790
+2 PLAC Surry, North Carolina, USA
+2 SOUR @S3@
+3 PAGE The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 NAME The National Archives in Washington, DC; Washington, DC; First Census of the United States, 1790.; Year: 1790; Census Place: Surry, North Carolina; Series: M637; Roll: 7; Page: 520; Family History Library Film: 0568147
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\4440913_00302.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+1 PROB
+2 DATE 2 OCT 1796
+2 PLAC Surry, North Carolina, USA
+2 SOUR @S2@
+3 PAGE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 NAME Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\004772461_00472.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+1 DEAT
+2 DATE 2 DEC 1796
+2 PLAC Surry County, North Carolina, USA
+2 SOUR @S1@
+3 _TMPLT
+4 FIELD
+5 NAME Page
+2 SOUR @S2@
+3 PAGE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 NAME Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\004772461_00472.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+1 RESI
+2 PLAC Surry County, North Carolina
+2 SOUR @S2@
+3 PAGE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 _TMPLT
+4 FIELD
+5 NAME Page
+5 VALUE Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 NAME Record of Wills, 1771-1963; Author: North Carolina. Superior Court (Surry County); Probate Place: Surry, North Carolina
+3 OBJE
+4 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\004772461_00472.jpg
+4 FORM jpg
+4 _TYPE PHOTO
+4 _SCBK N
+4 _PRIM N
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\Thomas Speer Spear.pdf
+2 FORM pdf
+2 TITL Thomas Speer Spear
+2 _DATE 2 OCT 1796
+2 NOTE Will of Thomas Spear Speer
+2 _TYPE DOCUMENT
+2 _SCBK N
+2 _PRIM N
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\02-02-2012 09;57;59PM.jpg
+2 FORM jpg
+2 TITL 02-02-2012 09;57;59PM.JPG
+2 _DATE 2/2/2012 9:59:12 PM
+2 _TYPE PHOTO
+2 _SCBK N
+2 _PRIM N
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\UnitedStates (A29A2158D3F74C33892BBDBC138B95D5).jpg
+2 FORM jpg
+2 TITL UnitedStates
+2 _TYPE PHOTO
+2 _SCBK N
+2 _PRIM Y
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\Thomas Henry Speer ( Surry County, N.C.jpg
+2 FORM jpg
+2 TITL Thomas Henry Speer ( Surry County, N.C. Will Adstracts ) 1771-1827
+2 NOTE Surry County, North Carolina, Will Abstracts; pg. 103; dated Oct 2, 179
+3 CONC 6; wife Rebecca; sons: Reuben, Spencer,Eli a,d Thomas; daughters: Betse
+3 CONC y (Elizabeth), Nancy, Sally; recorded Aug. 17, 1797
+2 _TYPE PHOTO
+2 _SCBK N
+2 _PRIM N
+1 OBJE
+2 FILE C:\Users\cbevi\OneDrive\cdb\Genealogy\RootsMagic\AncestrySync3_media\Will Of Thomas Speer Sr.jpg
+2 FORM jpg
+2 TITL Will Of Thomas Speer Sr.
+2 _DATE 2 OCT 1796
+2 NOTE Thomas Speer Sr.  BIRTH 1743 • Somerset County, Maryland, USA  DEATH 2 D
+3 CONC EC 1796 • Surry County, North Carolina, USA
+2 _TYPE PHOTO
+2 _SCBK N
+2 _PRIM N
+1 FAMS @F3@
+1 FAMC @F5@
+0 TRLR
