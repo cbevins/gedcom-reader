@@ -1,12 +1,12 @@
 import fs from 'fs'
 import { file2JsonArray } from '../index.js'
+import { intFormat } from '../helpers/formatters.js'
 
 const progName = (process.argv[1]).split('\\').pop()
 
-function intFormat(val, width=4) { return val.toLocaleString('en-US').padStart(width) }
-
 const inputs = ['../tmp/Ancestry.ged', '../tmp/RootsMagic.ged']
 const outputs = ['_gedcomDataAncestry.js', '_gedcomDataRootsMagic.js']
+const started = new Date()
 
 console.log(`${progName} ...`)
 for (let i=0; i<inputs.length; i++) {
@@ -22,6 +22,7 @@ for (let i=0; i<inputs.length; i++) {
     console.log(`        writeFile()      : ${intFormat(time3-time2)} msec`)
     console.log(`        created file     : '${outputs[i]}'`)
 }
+console.log(`Total elapsed time: ${(new Date()-started)} msec`)
 
 function writeFile(lines, outputName, varName='_gedcomData') {
     // Create some Javascript from the text array
