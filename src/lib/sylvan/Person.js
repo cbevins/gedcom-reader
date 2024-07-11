@@ -1,7 +1,7 @@
 /**
  * People are top level GEDCOM 'SOUR' records stored in a Map
  */
-import { age } from '../js/age.js'
+import { dateDiff } from './EvDate.js'
 
 export class Person {
     constructor(gedKey) {
@@ -10,7 +10,7 @@ export class Person {
 
     // Returns [years, months, days] between birth and current/death dates.
     age() {
-        let a = age(this.birthDate(), (this.isLiving() ? null : this.deathDate()))
+        let a = dateDiff(this.birthDate(), (this.isLiving() ? null : this.deathDate()))
         if (a[0]<0 || a[0] === null) a[0] = 0
         if (a[1]<0 || a[1] === null) a[1] = 0
         if (a[2]<0 || a[2] === null) a[2] = 0

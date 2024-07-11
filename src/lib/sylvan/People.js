@@ -8,11 +8,11 @@ export class People {
     // Creates hydrated Person instances for each GEDCOM INDI reord
     constructor(gedcom, places) {
         this._data = {
-            gedcom: gedcom,     // GedcomRecords instance
+            gedcom: gedcom,     // Gedcom instance
             gedKeyMap:  null,   // Map of gedKey => Person
             msg: [],            // Processing messages
             nameKeyMap: null,   // Map of nameKey => person
-            nameLabelMap: null, // map of nameLabel => person
+            nameLabelMap: null, // Map of nameLabel => person
             places: places,
             type: 'INDI'
         }

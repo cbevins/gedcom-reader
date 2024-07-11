@@ -1,22 +1,22 @@
-export function locations(gedrecs) {
-    if (gedrecs.isRootsMagic()){
-        return locationsRootsMagic(gedrecs)
+export function locations(gedcom) {
+    if (gedcom.isRootsMagic()){
+        return locationsRootsMagic(gedcom)
     } else {
         return []
-        // return placesAncestry(gedrecs)
+        // return placesAncestry(gedcom)
     }
 }
 
 // Returns an array of [placeText, placeStnd]
-function locationsRootsMagic(gedrecs) {
-    const places = gedrecs.topLevelMap().get('_PLAC')
+function locationsRootsMagic(gedcom) {
+    const places = gedcom.topLevelMap().get('_PLAC')
     console.log(`There are ${places.size} _PLAC records`)
     const ar = []
     for(const [key, record] of places.entries()) {
-        const stndRec = gedrecs.findFirst(key, ['_PLAC', 'STND'])
-        const latiRec = gedrecs.findFirst(key, ['_PLAC', 'MAP', 'LATI'])
+        const stndRec = gedcom.findFirst(key, ['_PLAC', 'STND'])
+        const latiRec = gedcom.findFirst(key, ['_PLAC', 'MAP', 'LATI'])
         const lat = latiRec ? latiRec.content() : 0
-        const longRec = gedrecs.findFirst(key, ['_PLAC', 'MAP', 'LONG'])
+        const longRec = gedcom.findFirst(key, ['_PLAC', 'MAP', 'LONG'])
         const lon = longRec ? longRec.content() : 0
         ar.push([record.content(), stndRec.content(), lat, lon])
     }
