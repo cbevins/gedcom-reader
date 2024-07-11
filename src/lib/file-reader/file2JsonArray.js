@@ -11,5 +11,7 @@ export async function file2JsonArray(fileName, onCloseCallback=null) {
     reader.on('close', () => { if (onCloseCallback) onCloseCallback(this) })
     const lines = []
     for await (const line of reader) { lines.push(line) }
+    // Remove any byte-order mark (BOM) (RootsMagic adds it)
+    if (lines[0].charCodeAt(0) === 65279) lines[0] = lines[0].substring(1)
     return lines
 }

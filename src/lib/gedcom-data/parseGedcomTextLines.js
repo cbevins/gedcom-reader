@@ -90,6 +90,8 @@ export function parseGedcomTextLine(line, lineNo) {
 
     // Otherwise the second field is the Gedcom record *type* and the remaining fields are the content
     data.type = fields[1]
-    for(let i=2; i<fields.length; i++) data.content += ' ' + fields[i]
+    fields.shift()
+    fields.shift()
+    data.content = fields.join(' ')
     return data
 }

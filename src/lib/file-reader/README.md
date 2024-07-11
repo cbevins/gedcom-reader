@@ -14,4 +14,18 @@ Function that asynchronously reads a newline-delimited text file from the local 
 
 USAGE: **node runFile2JsonArray.js *inputFileName* [*outputFileName.js*]**
 
-Reads the **inputFileName** into a JSON array and displays it. Then it creates an executable Javascript statement assigning the array to a const export variable.  Finally, it writes the executable JS to the **outputFileName**.
+```bash
+node runFile2JsonArray.js
+```
+
+Reads the **inputFileName** into a JSON array and displays it. Then it creates an executable Javascript statement assigning the array to a **const export** variable.  Finally, it writes the executable JS to the **outputFileName**.
+
+## Sample files
+
+- **Trees.txt** is a sample text input file
+- **Trees.js** is the output produced by:
+
+```bash
+node runFile2JsonArray.js
+```
+with no input file name.

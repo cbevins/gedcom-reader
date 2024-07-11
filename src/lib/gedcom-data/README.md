@@ -1,16 +1,18 @@
 # **gedcom-data** Subpackage
 
-The **gedcom-data** subpackage explores an alternative method for getting GEDCOM data into the client-side browser.  The aim is to avoid forcing the server to send the GEDCOM file to the client on the initial invocation, and then having to reload and reprocess it with every page load.
+The **gedcom-data** subpackage explores an alternative method for getting GEDCOM data into the client-side browser.  The aim is to avoid forcing the server to send the GEDCOM file to the client on the initial (and subsequent) page loads by having it immediately available as pre-processed Javascript files without any object references.
 
-The **gedcomFile2Array.js** script:
-- reads a GEDCOM text file produced by either Ancestry.com or RootsMagic,
-- parses each record into an array containing of [array index, line number, hierarchy level, record type, record contents],
-- links each record to its parent and children using array indices, rather than references, thus enabling it to be stored as a netwrok-transportable data file,
-- writing all the records to a Javascript file as a simple array.
+## **createGedcomDataJsArray.js** Script File
+
+The **createGedcomDataJsArray.js** script:
+- reads a GEDCOM text file produced by either Ancestry.com or RootsMagic (currently hard-wired to **../tmp/RootsMagic.ged**);
+- parses each record into an array whose elements are arrays containing the record's [array index, line number, hierarchy level, record type, record contents];
+- links each record to its parent record and any children records using their array indices, rather than references, thus enabling it to be stored as a network-transportable Javascript data file; and
+- writes the records to a Javascript data file as a simple array (currently hard-wired to **./GedcomDataJsArray.js**).
 
 Any Javascript file on the client-side may then easily import the (persistent) gedcom data for further processing and analysis:
 ```js
-import { gedcomData } from './gedcomData.js'
+import { gedcomData, INDEX, LINENO, LEVEL, TYPE, CONTENT, PARENT, CHILDREN } from './gedcomData.js'
 ```
 
 Additional functions will be added to search the array to, for example,
