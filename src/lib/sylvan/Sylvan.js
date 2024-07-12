@@ -3,7 +3,7 @@
  * complete with hydrated with objects references.
  * No reference is stored to the Gedcom so that it may be garbage collected.
  */
-import { createGedcom } from '../gedcom/createGedcom.js'    // or from '$lib/index.js' if using SvelteKit
+import { constructGedcom } from '../gedcom/constructGedcom.js'    // or from '$lib/index.js' if using SvelteKit
 
 import { Locations } from './Locations.js'
 import { Families } from './Families.js'
@@ -64,7 +64,7 @@ export class Sylvan {
 
     _init(_gedcomData) {
         // Step 1 - Create the Gedcom instance
-        const gedcom = createGedcom(_gedcomData)
+        const gedcom = constructGedcom(_gedcomData)
     
         // Step 2 - Create Places instance
         this._data.places = new Places()
