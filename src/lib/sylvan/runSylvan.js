@@ -5,31 +5,61 @@ import { nationalOrigins } from '../lineage/nationalOrigins.js'
 import { personProfile } from './personProfile.js'
 import { reviewAll } from './sylvanReviews.js'
 import { Channels } from '../lineage/Channels.js'
+import { GenerationStats } from '../lineage/GenerationStats.js'
 
 // import { _gedcomData } from '../gedcom/_gedcomAncestry.js'
 import { _gedcomData } from '../gedcom/_gedcomDataRootsMagic.js'
 
-const time1 = new Date()
+const Args = [
+    ['generations', "display generational stats for 'CollinDouglasBevins1952'"],
+    ['origins', "displays national origins for 'CollinDouglasBevins1952'"],
+    ['pathway', "displays lineage pathway from 'CollinDouglasBevins1952','HannahHunter1753'"],
+    ['profile', "displays Person profile for 'WilliamLongfordBevins1815'"],
+    ['summary', "displays Sylvan records summary"],
+]
+
+const started = new Date()
 const parms = getArgs()
 main(parms)
-const time2 = new Date()
-console.log(`\nElapsed : ${(time2-time1).toString().padStart(5)} msec`)
+console.log(`\nElapsed : ${(new Date()-started).toString().padStart(5)} msec`)
+
+function getArgs() {
+    const parms = {}
+    if (process.argv.length < 3) {
+        const msg = ['***\n*** usage: node runSylvan.js <args> where <args> are 1 or more of:']
+        for(let i=0; i<Args.length; i++) msg.push(`    ${Args[i][0].padEnd(8)} : ${Args[i][1]}`)
+        display(msg)
+    }
+    for (let i=2; i<process.argv.length; i++) {
+        parms[(process.argv[i]).toLowerCase()] = true
+    }
+    return parms
+}
 
 function main() {
     const sylvan = new Sylvan(_gedcomData)
-    if (parms.chain) display(chain(sylvan, 'CollinDouglasBevins1952','HannahHunter1753'))
+    if (parms.generations) display(generations(sylvan, 'CollinDouglasBevins1952'))
     if (parms.origins) display(origins(sylvan, 'CollinDouglasBevins1952'))
+    if (parms.pathway) display(pathway(sylvan, 'CollinDouglasBevins1952','HannahHunter1753'))
     if (parms.profile) display(profile(sylvan, 'WilliamLongfordBevins1815'))
     if (parms.summary) display(summary(sylvan))
 }
 
-function chain(sylvan, subjectKey, targetKey) {
+function generations(sylvan) {
+    const gen = new GenerationStats(sylvan)
+    const subject = sylvan.people().find('CollinDouglasBevins1952')
+    gen.calc(subject)
+    return gen.lines()
+}
+
+function pathway(sylvan, subjectKey, targetKey) {
     const subject = sylvan.people().find(subjectKey)
     const target = sylvan.people().find(targetKey)
-    const chain = lineagePathway(subject, target)
-    const msg = [`Lineage Chain from ${subject.fullName()} to ${target.fullName()} has ${chain.length} links:`]
-    for (let i=0; i< chain.length; i++) {
-        msg.push(`  ${i+1}: ${chain[i][0].fullName()} by ${chain[i][1].fullName()}`)
+    const path = lineagePathway(subject, target).reverse()
+    const msg = [[`Lineage pathway from ${subject.fullName()} to ${target.fullName()} has ${path.length} links:`],
+        [`  0. ${subject.label()}`]]
+    for (let i=0; i< path.length; i++) {
+        msg.push(`  ${i+1}: ${path[i][0].fullName()} by ${path[i][1].fullName()}`)
     }
     return msg
 }
@@ -67,42 +97,5 @@ function summary(sylvan) {
         `Reviews   : ${intFormat(reviews.length, 6)}`,
         `Top Levels: ${intFormat(sylvan.topLevels().length, 6)}`,
         `Contexts  : ${intFormat(sylvan.contexts().length, 6)}`]
-}
-
-function getArgs() {
-    if (process.argv.length < 3) {
-        console.log('***\n*** usage: node runSylvan.js ["summary", "chain", "origins", "profile"] where:')
-        // console.log("   ancestors: displays my ancestors")
-        // console.log("   block: displays GEDCOM top level block for 'INDI @I896@'")
-        // console.log("   contexts: displays all the GEDCOM record type contexts and their counts")
-        // console.log("   demographics: displays demographics for CDB")
-        // console.log("   find: displays finding all the GEDCOM records for @I896@ with context INDI-NAME-GIVN")
-        console.log("   chain  : displays lineage chain from 'CollinDouglasBevins1952','HannahHunter1753'")
-        console.log("   origins: displays national origins for 'CollinDouglasBevins1952'")
-        // console.log("   nodes: FamilyTree and FamilyTreeNodes")
-        console.log("   profile: displays Person profile for 'WilliamLongfordBevins1815'")
-        console.log("   summary: displays Sylvan records summary")
-        // console.log("   toplevels: displays all the GEDCOM Level 0 command types and their counts")
-        // console.log("   vines: displays the family Vine and VineNodes")
-        // process.exit()
-    }
-    const parms = {}
-    for (let i=2; i<process.argv.length; i++) {
-        const arg = (process.argv[i]).toLowerCase()
-        const a = arg.substring(0, 1)
-        if (a === 's') parms.summary = true
-        // else if (a === 'b') parms.block = true
-        else if (a === 'c') parms.chain = true
-        // else if (a === 'd') parms.demographics = true
-        // else if (a === 'f') parms.findall = true
-        // else if (a === 'g') parms.generations = true
-        // else if (a === 'l') parms.lineage = true
-        // else if (a === 'n') parms.familyTree = true
-        else if (a === 'o') parms.origins = true
-        else if (a === 'p') parms.profile = true
-        // else if (a === 't') parms.toplevels = true
-        // else if (a === 'v') parms.vines = true
-    }
-    return parms
 }
 

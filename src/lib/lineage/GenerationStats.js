@@ -1,4 +1,4 @@
-import { Ancestors } from './Ancestors.js'
+import { Lineage } from './Lineage.js'
 import { GenerationsData } from '../helpers/generations.js'
 
 /**
@@ -45,9 +45,11 @@ export class GenerationStats {
     // Accumulate stats over the population
     calc(subject) {
         this._init()
-        const ancestors = new Ancestors(subject)
-        for (const [person, ancestor] of ancestors.map().entries()) {
-            const gen = this.gen(ancestor.gen())
+        const lineage = new Lineage(subject)
+        for (let i=0; i< lineage.nodes().length; i++) {
+            const node = lineage.node(i)
+            const gen = this.gen(node.gen)
+            const person = node.person
             gen.count++
             if (person.birthYear()) {
                 gen.birthMax = (person.birthYear() > gen.birthMax) ? person.birthYear() : gen.birthMax
