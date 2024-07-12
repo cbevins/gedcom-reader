@@ -1,5 +1,6 @@
 import { Sylvan } from './Sylvan.js'
 import { intFormat } from '../helpers/formatters.js'
+import { lineagePathway } from '../lineage/lineagePathway.js'
 import { nationalOrigins } from '../lineage/nationalOrigins.js'
 import { personProfile } from './personProfile.js'
 import { reviewAll } from './sylvanReviews.js'
@@ -16,9 +17,21 @@ console.log(`\nElapsed : ${(time2-time1).toString().padStart(5)} msec`)
 
 function main() {
     const sylvan = new Sylvan(_gedcomData)
+    if (parms.chain) display(chain(sylvan, 'CollinDouglasBevins1952','HannahHunter1753'))
     if (parms.origins) display(origins(sylvan, 'CollinDouglasBevins1952'))
     if (parms.profile) display(profile(sylvan, 'WilliamLongfordBevins1815'))
     if (parms.summary) display(summary(sylvan))
+}
+
+function chain(sylvan, subjectKey, targetKey) {
+    const subject = sylvan.people().find(subjectKey)
+    const target = sylvan.people().find(targetKey)
+    const chain = lineagePathway(subject, target)
+    const msg = [`Lineage Chain from ${subject.fullName()} to ${target.fullName()} has ${chain.length} links:`]
+    for (let i=0; i< chain.length; i++) {
+        msg.push(`  ${i+1}: ${chain[i][0].fullName()} by ${chain[i][1].fullName()}`)
+    }
+    return msg
 }
 
 function display(lines) { console.log(lines.join('\n')) }
@@ -41,13 +54,6 @@ function profile(sylvan, nameKey) {
     return personProfile(person)
 }
 
-function displayProfile(sylvan) {
-    const people = sylvan.people()
-    const subject = people.find('CollinDouglasBevins1952')
-    // console.log(profile(subject))
-    return
-}
-
 function summary(sylvan) {
     const reviews =  reviewAll(sylvan)
     return [`Sylvan Summary`,
@@ -65,13 +71,13 @@ function summary(sylvan) {
 
 function getArgs() {
     if (process.argv.length < 3) {
-        console.log('***\n*** usage: node runSylvan.js ["summary", "origins",  "profile"] where:')
+        console.log('***\n*** usage: node runSylvan.js ["summary", "chain", "origins", "profile"] where:')
         // console.log("   ancestors: displays my ancestors")
         // console.log("   block: displays GEDCOM top level block for 'INDI @I896@'")
         // console.log("   contexts: displays all the GEDCOM record type contexts and their counts")
         // console.log("   demographics: displays demographics for CDB")
         // console.log("   find: displays finding all the GEDCOM records for @I896@ with context INDI-NAME-GIVN")
-        // console.log("   lineage: displays lineage from CDB to Hannah Hunter")
+        console.log("   chain  : displays lineage chain from 'CollinDouglasBevins1952','HannahHunter1753'")
         console.log("   origins: displays national origins for 'CollinDouglasBevins1952'")
         // console.log("   nodes: FamilyTree and FamilyTreeNodes")
         console.log("   profile: displays Person profile for 'WilliamLongfordBevins1815'")
@@ -86,7 +92,7 @@ function getArgs() {
         const a = arg.substring(0, 1)
         if (a === 's') parms.summary = true
         // else if (a === 'b') parms.block = true
-        // else if (a === 'c') parms.contexts = true
+        else if (a === 'c') parms.chain = true
         // else if (a === 'd') parms.demographics = true
         // else if (a === 'f') parms.findall = true
         // else if (a === 'g') parms.generations = true
