@@ -10,7 +10,7 @@ The **gedcom** subpackage provides the bridge between a GEDCOM text file (as pro
 The script file **convertGedcom2Data.js** reads the **../tmp/Ancestry.ged** and **../RootsMagic.ged** GEDCOM text files and generates corresponding **_gedcomDataAncestry.js** and **_gedcomDataRootsMagic.js** Javascript data files:
 
 ```bash
-node write_gedcomdata.js
+node convertGedcom2Data.js
 ```
 which logs:
 

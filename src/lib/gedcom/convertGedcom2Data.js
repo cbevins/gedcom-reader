@@ -56,7 +56,6 @@ const keepers= [
 keepers.forEach(item => keepersSet.add(item))
 
 const started = new Date()
-
 console.log(`${progName} ...`)
 for (let i=0; i<inputs.length; i++) {
     const time1 = new Date()
@@ -68,7 +67,8 @@ for (let i=0; i<inputs.length; i++) {
 
     const selected = selectLines(lines, keepersSet)
     const time3 = new Date()
-    console.log(`        selectLines()    : ${intFormat(time3-time2)} msec ${selected.length} selected records`)
+    const pct = (100 * selected.length / lines.length).toFixed(0)
+    console.log(`        selectLines()    : ${intFormat(time3-time2)} msec ${selected.length} selected records (${pct}%)`)
 
     writeFile(selected, outputs[i])
     const time4 = new Date()
