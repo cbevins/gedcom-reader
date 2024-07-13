@@ -1,21 +1,30 @@
+import { Channels } from '../lineage/Channels.js'
+import { Demographics } from '../lineage/Demographics.js'
+import { GenerationStats } from '../lineage/GenerationStats.js'
+import { Lineage } from '../lineage/Lineage.js'
 import { Sylvan } from './Sylvan.js'
-import { intFormat } from '../helpers/formatters.js'
+
+import { intFmt } from '../helpers/formatters.js'
 import { lineagePathway } from '../lineage/lineagePathway.js'
 import { nationalOrigins } from '../lineage/nationalOrigins.js'
 import { personProfile } from './personProfile.js'
 import { reviewAll } from './sylvanReviews.js'
-import { Channels } from '../lineage/Channels.js'
-import { GenerationStats } from '../lineage/GenerationStats.js'
 
 // import { _gedcomData } from '../gedcom/_gedcomAncestry.js'
 import { _gedcomData } from '../gedcom/_gedcomDataRootsMagic.js'
 
+const cdbKey = 'CollinDouglasBevins1952'
+const hhKey = 'HannahHunter1753'
+const wlbKey = 'WilliamLongfordBevins1815'
+
 const Args = [
-    ['generations', "display generational stats for 'CollinDouglasBevins1952'"],
-    ['origins', "displays national origins for 'CollinDouglasBevins1952'"],
-    ['pathway', "displays lineage pathway from 'CollinDouglasBevins1952','HannahHunter1753'"],
-    ['profile', "displays Person profile for 'WilliamLongfordBevins1815'"],
-    ['summary', "displays Sylvan records summary"],
+    ['demographics', `displays some demographics for direct ancestors of '${cdbKey}'`],
+    ['generations', `display generational stats for '${cdbKey}'`],
+    ['lineage', `displays lineage for '${cdbKey}'`],
+    ['origins', `displays national origins for '${cdbKey}'`],
+    ['pathway', `displays lineage pathway from '${cdbKey}' to '${hhKey}'`],
+    ['profile', `displays Person profile for '${wlbKey}'`],
+    ['summary', `displays Sylvan records summary`],
 ]
 
 const started = new Date()
@@ -27,7 +36,7 @@ function getArgs() {
     const parms = {}
     if (process.argv.length < 3) {
         const msg = ['***\n*** usage: node runSylvan.js <args> where <args> are 1 or more of:']
-        for(let i=0; i<Args.length; i++) msg.push(`    ${Args[i][0].padEnd(8)} : ${Args[i][1]}`)
+        for(let i=0; i<Args.length; i++) msg.push(`    ${Args[i][0].padEnd(12)} : ${Args[i][1]}`)
         display(msg)
     }
     for (let i=2; i<process.argv.length; i++) {
@@ -38,18 +47,40 @@ function getArgs() {
 
 function main() {
     const sylvan = new Sylvan(_gedcomData)
-    if (parms.generations) display(generations(sylvan, 'CollinDouglasBevins1952'))
-    if (parms.origins) display(origins(sylvan, 'CollinDouglasBevins1952'))
-    if (parms.pathway) display(pathway(sylvan, 'CollinDouglasBevins1952','HannahHunter1753'))
-    if (parms.profile) display(profile(sylvan, 'WilliamLongfordBevins1815'))
+    if (parms.demographics) display(demographics(sylvan, cdbKey))
+    if (parms.generations) display(generations(sylvan, cdbKey))
+    if (parms.lineage) display(lineage(sylvan, cdbKey))
+    if (parms.origins) display(origins(sylvan, cdbKey))
+    if (parms.pathway) display(pathway(sylvan, cdbKey, hhKey))
+    if (parms.profile) display(profile(sylvan, wlbKey))
     if (parms.summary) display(summary(sylvan))
 }
 
-function generations(sylvan) {
-    const gen = new GenerationStats(sylvan)
-    const subject = sylvan.people().find('CollinDouglasBevins1952')
-    gen.calc(subject)
+function demographics(sylvan, subjectKey) {
+    const subject = sylvan.people().find(subjectKey)
+    const lineage = new Lineage(subject)
+    const demog = new Demographics(lineage.persons())
+    const msg = [`Demographics for '${subject.label()}' ${lineage.size()} direct ancestors:`]
+    return msg.concat(demog.ageDemographics(), demog.chilrenDemographics(), demog.spouseDemographics())
+}
+
+function generations(sylvan, subjectKey) {
+    const subject = sylvan.people().find(subjectKey)
+    const gen = new GenerationStats(sylvan, subject)
     return gen.lines()
+}
+
+function lineage(sylvan, subjectKey) {
+    const subject = sylvan.people().find(subjectKey)
+    const lineage = new Lineage(subject)
+    const nodes = lineage.nodesBySeq()
+    const msg = [`Lineage of '${subject.label()}' ${nodes.length} direct ancestors:`]
+    for (let i=0; i<nodes.length; i++) {
+        const node = nodes[i]
+        msg.push(''.padEnd(4*node.gen) + node.gen
+            + ` ${node.person.label()} [${node.person.ageString()}] [${node.person.birthCountry()}]`)
+    }
+    return msg
 }
 
 function pathway(sylvan, subjectKey, targetKey) {
@@ -89,13 +120,13 @@ function summary(sylvan) {
     return [`Sylvan Summary`,
         `GEDCOM    : ${sylvan.source()}`,
         `Created   : ${sylvan.created()}`,
-        `Places    : ${intFormat(sylvan.places().size(), 6)}`,
-        `People    : ${intFormat(sylvan.people().size(), 6)}`,
-        `Places    : ${intFormat(sylvan.places().size(), 6)}`,
-        `Families  : ${intFormat(sylvan.families().size(), 6)}`,
-        `Locations : ${intFormat(sylvan.locations().size(), 6)}`,
-        `Reviews   : ${intFormat(reviews.length, 6)}`,
-        `Top Levels: ${intFormat(sylvan.topLevels().length, 6)}`,
-        `Contexts  : ${intFormat(sylvan.contexts().length, 6)}`]
+        `Places    : ${intFmt(sylvan.places().size(), 6)}`,
+        `People    : ${intFmt(sylvan.people().size(), 6)}`,
+        `Places    : ${intFmt(sylvan.places().size(), 6)}`,
+        `Families  : ${intFmt(sylvan.families().size(), 6)}`,
+        `Locations : ${intFmt(sylvan.locations().size(), 6)}`,
+        `Reviews   : ${intFmt(reviews.length, 6)}`,
+        `Top Levels: ${intFmt(sylvan.topLevels().length, 6)}`,
+        `Contexts  : ${intFmt(sylvan.contexts().length, 6)}`]
 }
 

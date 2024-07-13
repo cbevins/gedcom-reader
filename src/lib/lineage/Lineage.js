@@ -66,7 +66,7 @@ export class Lineage {
     // Returns an array of all Person references
     persons() {
         const persons = []
-        for (const [person, ancestor] of this.map().entries()) persons.push(person)
+        for (const [person, ancestor] of this._data.persons.entries()) persons.push(person)
         return persons
     }
 

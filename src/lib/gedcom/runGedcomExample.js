@@ -5,7 +5,7 @@
 import { constructGedcom } from './constructGedcom.js'    // or from '$lib/index.js' if using SvelteKit
 // import { _gedcomData } from './_gedcomAncestry.js'
 import { _gedcomData } from './_gedcomDataRootsMagic.js'
-import { intFormat } from '../helpers/formatters.js'
+import { intFmt } from '../helpers/formatters.js'
 
 const started = new Date()
 runExample()
@@ -23,10 +23,10 @@ function runExample() {
     // Show the toplevel command set
     const top = gedcom.topLevelCounts()
     console.log(`Resulting Gedcom instance has ${top.length} Level 0 record types:`)
-    for(const pair of top) console.log(`    ${intFormat(pair[1], 8)} ${pair[0]}`)
+    for(const pair of top) console.log(`    ${intFmt(pair[1], 8)} ${pair[0]}`)
 
     // Show the command contexts
     const contexts = gedcom.contexts()
     console.log(`Resulting Gedcom instance has ${contexts.length} record contexts:`)
-    // for(const pair of contexts.sort()) console.log(`  ${intFormat(pair[1],6)} ${pair[0]}`)
+    // for(const pair of contexts.sort()) console.log(`  ${intFmt(pair[1], 6)} ${pair[0]}`)
 }

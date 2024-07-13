@@ -3,7 +3,8 @@
 The **helpers** Subpackage is a collection of miscellaneous routines shared by multiple subpackages.
 
 - formatters.js
-    - export function intFormat(val, width=4) {}
+    - export function intFmt(val, width=0, separators=true)
+    - export function numFmt(val, decimals=0, width=0, separators=true)
 
 - generations.js
     - export const GenerationsData = []

@@ -1,13 +1,14 @@
 export class Demographics {
-    constructor(sylvan) {
+    constructor(persons) {
         this._data = {
             cols: ['1400s', '1500s', '1600s', '1700s', '1800s', '1900s', '2000s', 'Totals'],
+            persons: persons,
             props: ['Age at Death', 'Number of Spouses', 'Number of Children'],
             rows: ['Female', 'Male', 'Totals'],
             stats: [],
-            sylvan: sylvan,
             yearCats: [1500, 1600, 1700, 1800, 1900, 2000, 2100]
         }
+        this.collectData(persons)
     }
     col(idx) { return this._data.cols[idx] }
     cols() { return this._data.cols }
@@ -84,15 +85,19 @@ export class Demographics {
 
     // Demonstrates how to display the Demographic table
     // 0=age, 1=spouses, 2=children
-    log(propIdx=0) {
+    ageDemographics() { return this.demoArray(0) }
+    chilrenDemographics() { return this.demoArray(1) }
+    spouseDemographics() { return this.demoArray(2) }
+    demoArray(propIdx=0) {
+        const msg = ['']
         let n = 2
-        console.log(`\n                Demographics for: ${this.prop(propIdx)}`)
+        msg.push(`                Demographics for: ${this.prop(propIdx)}`)
         let idx
         let str = 'Gender   Prop'
         for(let col=0; col<this.cols().length; col++) {
             str += this.col(col).toString().padStart(8, ' ')
         }
-        console.log(str)
+        msg.push(str)
         for(let row=0; row<this.rows().length; row++) {
             str = (this.row(row)).padEnd(8, ' ') + ' Mean'
             idx = row * this.cols().length
@@ -102,7 +107,7 @@ export class Demographics {
                 str += (prop.mean).toFixed(n).padStart(8, ' ')
                 idx++
             }
-            console.log(str)
+            msg.push(str)
 
             str = (this.row(row)).padEnd(8, ' ') + ' Max '
             idx = row * this.cols().length
@@ -111,7 +116,7 @@ export class Demographics {
                 str += (prop.max).toFixed(n).padStart(8, ' ')
                 idx++
             }
-            console.log(str)
+            msg.push(str)
 
             str = (this.row(row)).padEnd(8, ' ') + ' N   '
             idx = row * this.cols().length
@@ -120,8 +125,8 @@ export class Demographics {
                 str += (prop.n).toFixed(0).padStart(8, ' ')
                 idx++
             }
-            console.log(str)
+            msg.push(str)
         }
-        return this
+        return msg
     }
 }

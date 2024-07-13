@@ -1,6 +1,6 @@
 import fs from 'fs'
 import { file2JsonArray } from '../index.js'
-import { intFormat } from '../helpers/formatters.js'
+import { intFmt } from '../helpers/formatters.js'
 import { parseLine } from './constructGedcom.js'
 
 const progName = (process.argv[1]).split('\\').pop()
@@ -63,16 +63,16 @@ for (let i=0; i<inputs.length; i++) {
     const lines = await file2JsonArray(inputs[i])
     const time2 = new Date()
     console.log(`    GEDCOM file          : '${inputs[i]}' has ${lines.length} records`)
-    console.log(`        file2JsonArray() : ${intFormat(time2-time1)} msec`)
+    console.log(`        file2JsonArray() : ${intFmt(time2-time1)} msec`)
 
     const selected = selectLines(lines, keepersSet)
     const time3 = new Date()
     const pct = (100 * selected.length / lines.length).toFixed(0)
-    console.log(`        selectLines()    : ${intFormat(time3-time2)} msec ${selected.length} selected records (${pct}%)`)
+    console.log(`        selectLines()    : ${intFmt(time3-time2)} msec ${selected.length} selected records (${pct}%)`)
 
     writeFile(selected, outputs[i])
     const time4 = new Date()
-    console.log(`        writeFile()      : ${intFormat(time4-time3)} msec`)
+    console.log(`        writeFile()      : ${intFmt(time4-time3)} msec`)
     console.log(`        created file     : '${outputs[i]}'`)
 }
 console.log(`Total elapsed time: ${(new Date()-started)} msec`)

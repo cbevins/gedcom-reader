@@ -5,13 +5,15 @@ import { GenerationsData } from '../helpers/generations.js'
  * Calculates birth and death year ranges by generation
  */
 export class GenerationStats {
-    constructor(sylvan) {
+    constructor(sylvan, subject=null) {
         this._data = {
             countries: sylvan.places().countries(),
             gens: [],           // Array of generation data
+            subject: subject,   // Person reference
             sylvan: sylvan,
             totals: null        // Total number of ancestors by country of birth
         }
+        if (subject) this.calc(subject)
     }
 
     country(idx) { return this._data.countries[idx] }
@@ -44,6 +46,7 @@ export class GenerationStats {
 
     // Accumulate stats over the population
     calc(subject) {
+        this._data.subject = subject
         this._init()
         const lineage = new Lineage(subject)
         for (let i=0; i< lineage.nodes().length; i++) {
