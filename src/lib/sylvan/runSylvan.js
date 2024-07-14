@@ -129,4 +129,3 @@ function summary(sylvan) {
         `Top Levels: ${intFmt(sylvan.topLevels().length, 6)}`,
         `Contexts  : ${intFmt(sylvan.contexts().length, 6)}`]
 }
-

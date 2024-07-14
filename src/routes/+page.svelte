@@ -1,30 +1,20 @@
 <script>
-    import { GedcomReader } from '$lib/gedcom/GedcomReader.js'
-
     $: fileName = '[No file Selected]'
     $: fileSize = 0
-    $: lines = []
-    $: time0 = 0
-    $: time1 = 0
-    $: time2 = 0
-    $: time3 = 0
-    $: gedcom = null// GedcomRecords instance
+    $: text = 'None'
+    $: settings = {name: 'No one', age: 0, city: 'Nowhere'}
 
     async function readLines(ev) {
-        time0 = new Date()
-        const text = await readTextFile(ev.target.files[0])
-        time1 = new Date()
-        
-        lines = text.split('\n')
-        time2 = new Date()
-
-        gedcom = gedcomLines2Json(lines)
-        time3 = new Date()
-        // const source = gedcom.isAncestry() ? 'Accestry.com' : 'Roots Magic'
+        text = await readTextFile(ev.target.files[0])
+        try {
+            settings = JSON.parse(text)
+        } catch (e) {
+            return console.error(e)
+        }
+        console.log('SETTINGS', settings)
     }
 
-    // Generic function that reads a File from an <input type="file">
-    // into an JSON record array.
+    // Generic function that reads a File from an <input type="file"> into an JSON record array.
     async function readTextFile(file) {
         // Not supported in Safari for iOS.
         fileName = file.name ? file.name : 'NOT SUPPORTED'
@@ -47,23 +37,11 @@
         const text = await file.text()
         return text
     }
-
-    // Converts an array of GEDCOM text records into a JSON object
-    function gedcomLines2Json(lines) {
-        const reader = new GedcomReader(lines)
-        return reader.gedcom()
-    }
 </script>
 
 <h1>Select a File</h1>
-<input type="file" id="file-selector" accept=".ged" on:change={readLines}>
+<input type="file" id="file-selector" accept="*" on:change={readLines}>
 <hr>
-<table>
-    <tr><td>File</td><td>{fileName}</td></tr>
-    <tr><td>Bytes</td><td>{fileSize}</td></tr>
-    <tr><td>Lines</td><td>{lines.length}</td></tr>
-    <tr><td>msec File.text()</td><td>{time1-time0}</td></tr>
-    <tr><td>msec text.split()</td><td>{time2-time1}</td></tr>
-    <tr><td>msec GedcomReader</td><td>{time3-time2}</td></tr>
-    <tr><td>msec total</td><td>{time3-time0}</td></tr>
-</table>
+{text}
+<hr>
+{settings.name} is {settings.age} years old and lives in {settings.city}.
