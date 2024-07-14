@@ -15,6 +15,7 @@ import { _gedcomData } from '../gedcom/_gedcomDataRootsMagic.js'
 
 const cdbKey = 'CollinDouglasBevins1952'
 const hhKey = 'HannahHunter1753'
+const tsKey = 'ThomasSparrow1615'
 const wlbKey = 'WilliamLongfordBevins1815'
 
 const Args = [
@@ -22,7 +23,7 @@ const Args = [
     ['generations', `display generational stats for '${cdbKey}'`],
     ['lineage', `displays lineage for '${cdbKey}'`],
     ['origins', `displays national origins for '${cdbKey}'`],
-    ['pathway', `displays lineage pathway from '${cdbKey}' to '${hhKey}'`],
+    ['pathway', `displays lineage pathway from '${cdbKey}' to '${tsKey}'`],
     ['profile', `displays Person profile for '${wlbKey}'`],
     ['summary', `displays Sylvan records summary`],
 ]
@@ -51,7 +52,7 @@ function main() {
     if (parms.generations) display(generations(sylvan, cdbKey))
     if (parms.lineage) display(lineage(sylvan, cdbKey))
     if (parms.origins) display(origins(sylvan, cdbKey))
-    if (parms.pathway) display(pathway(sylvan, cdbKey, hhKey))
+    if (parms.pathway) display(pathway(sylvan, cdbKey, tsKey))
     if (parms.profile) display(profile(sylvan, wlbKey))
     if (parms.summary) display(summary(sylvan))
 }
