@@ -51,7 +51,12 @@
     }
 </script>
 <div class="container">
-
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/fileupdown">File Upload Download</a></li>
+        <li><a href="/svgbutton">SVG Button</a></li>
+    </ul>
+    <hr>
     <h1>Select a Settings File</h1>
     <input type="file" id="file-selector" accept="*" on:change={readLines}>
     <hr>
