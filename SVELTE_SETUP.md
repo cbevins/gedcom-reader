@@ -48,7 +48,7 @@ Whenever I commit changes to the local repo, I also use VScode to 'push' or 'syn
 
 First, copy the preferred **favicon.png** (such as **Collin.jpg**) into the **static** folder.
 
-Then, repplace the main **app.html** with:
+Then, replace the main **app.html** with:
 
 ```html
 <!doctype html>
