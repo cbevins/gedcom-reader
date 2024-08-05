@@ -24,6 +24,7 @@ const Args = [
     ['lineage', `displays lineage for '${cdbKey}'`],
     ['origins', `displays national origins for '${cdbKey}'`],
     ['pathway', `displays lineage pathway from '${cdbKey}' to '${tsKey}'`],
+    ['personlist', `displays list of all peron labels for use in a Selector Combobox`],
     ['profile', `displays Person profile for '${wlbKey}'`],
     ['summary', `displays Sylvan records summary`],
 ]
@@ -53,6 +54,7 @@ function main() {
     if (parms.lineage) display(lineage(sylvan, cdbKey))
     if (parms.origins) display(origins(sylvan, cdbKey))
     if (parms.pathway) display(pathway(sylvan, cdbKey, tsKey))
+    if (parms.personlist) console.log(JSON.stringify(personlist(sylvan), null, 2))
     if (parms.profile) display(profile(sylvan, wlbKey))
     if (parms.summary) display(summary(sylvan))
 }
@@ -94,6 +96,16 @@ function pathway(sylvan, subjectKey, targetKey) {
         msg.push(`  ${i+1}: ${path[i][0].fullName()} by ${path[i][1].fullName()}`)
     }
     return msg
+}
+
+function personlist(sylvan) {
+    const people = sylvan.people()
+    const options = []
+    let id = 0
+    for (const [gedKey, person] of people.gedKeyMap().entries()) {
+        options.push({index: id++, gedkey: gedKey, label: person.label()})
+    }
+    return options
 }
 
 function display(lines) { console.log(lines.join('\n')) }
